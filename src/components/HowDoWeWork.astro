@@ -28,7 +28,6 @@ const steps = [
   }
 ];
 
-// Special Airplane Icon Fix for Step 3
 steps[2].icon = `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>`;
 ---
 
@@ -41,14 +40,12 @@ steps[2].icon = `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" 
 		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
 			{steps.map((item) => (
 				<div class="flex flex-col items-center text-center px-4">
-					<!-- Step Icon Circle -->
 					<div class="w-40 h-40 md:w-48 md:h-48 bg-[#1647DF] rounded-full flex items-center justify-center text-white mb-8 shadow-lg transition-transform hover:scale-105 duration-300">
 						<div class="flex flex-col items-center">
 							<Fragment set:html={item.icon} />
 						</div>
 					</div>
 					
-					<!-- Content -->
 					<div class="max-w-[320px]">
 						<h3 class="text-black text-base md:text-lg font-semibold mb-3 tracking-wide">
 							{item.step}: {item.title}
