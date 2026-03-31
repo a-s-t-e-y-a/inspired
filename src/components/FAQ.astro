@@ -1,0 +1,79 @@
+---
+const faqs = [
+  {
+    question: "What is Meditailor?",
+    answer: "MediTailor is a premium medical facilitation service that connects international patients with top-tier hospitals and surgeons in India, providing end-to-end support for a seamless healing journey."
+  },
+  {
+    question: "Why should I choose India for my medical treatment?",
+    answer: "India offers world-class medical expertise, state-of-the-art technology, and highly affordable treatment costs compared to Western countries, all while maintaining international standards of care."
+  },
+  {
+    question: "How do you select your partner hospitals?",
+    answer: "We only partner with JCI and NABH accredited hospitals that meet our rigorous standards for clinical excellence, patient safety, and high-precision outcomes."
+  },
+  {
+    question: "Can I speak with the doctor before I travel?",
+    answer: "Yes, we arrange virtual consultations with your chosen specialists so you can discuss your case, review potential treatments, and build confidence before making travel arrangements."
+  },
+  {
+    question: "Are there any hidden charges with MediTailor?",
+    answer: "No, we provide transparent, all-inclusive pricing upfront. Our mission is to ensure you know exactly what to expect, with no surprise costs during your treatment or stay."
+  },
+  {
+    question: "How much can I actually save?",
+    answer: "Patients typically save between 60% to 80% on medical procedures in India compared to the US or UK, even when including travel and luxury recovery accommodation."
+  },
+  {
+    question: "Do you help with Medical Visas?",
+    answer: "Absolutely. We provide official invitation letters from our partner hospitals and guide you through the entire visa application process to ensure a smooth entry into India."
+  },
+  {
+    question: "Will someone pick me up at the airport?",
+    answer: "Yes, our dedicated coordination team provides 24/7 airport pick-up and drop-off services, ensuring you are safely escorted to your hospital or hotel immediately upon arrival."
+  },
+  {
+    question: "What if I don't speak the local language?",
+    answer: "Language is never a barrier. Most medical professionals in India are fluent in English, and we provide dedicated translators for other languages to ensure clear communication at every step."
+  },
+  {
+    question: "What happens after I return to my home country?",
+    answer: "We facilitate comprehensive post-operative follow-ups with your surgeons via video calls and coordinate with your local doctors to ensure your recovery remains on track."
+  }
+];
+---
+
+<section class="bg-[#DAE9FF] py-24 px-4 md:px-20 lg:pl-[calc((100%-1200px)/2+4rem)] xl:pl-[calc((100%-1600px)/2+5rem)] xl:pr-[calc((100%-1600px)/2+5rem)]">
+	<div class="w-full max-w-[1600px] mx-auto">
+		<h2 class="text-[32px] md:text-[40px] font-[400] text-black mb-12 tracking-tight">Frequently Asked Questions</h2>
+
+		<div class="space-y-4">
+			{faqs.map((faq) => (
+				<details class="group bg-white border border-[#1647DF]/30 rounded-2xl overflow-hidden shadow-sm transition-all hover:border-[#1647DF]/60">
+					<summary class="flex justify-between items-center p-6 md:p-8 cursor-pointer list-none focus:outline-none">
+						<span class="text-black font-[500] text-base md:text-lg pr-8">{faq.question}</span>
+						<div class="flex-shrink-0 w-10 h-10 border-l border-[#1647DF]/20 flex items-center justify-center text-[#1647DF]">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-open:rotate-45 transition-transform duration-300">
+								<line x1="12" y1="5" x2="12" y2="19"></line>
+								<line x1="5" y1="12" x2="19" y2="12"></line>
+							</svg>
+						</div>
+					</summary>
+					<div class="px-6 pb-8 md:px-8 md:pb-10 text-gray-600 text-[15px] md:text-[16px] leading-relaxed font-[300]">
+						{faq.answer}
+					</div>
+				</details>
+			))}
+		</div>
+	</div>
+</section>
+
+<style>
+	/* Hide the default details arrow */
+	details > summary {
+		list-style: none;
+	}
+	details > summary::-webkit-details-marker {
+		display: none;
+	}
+</style>
