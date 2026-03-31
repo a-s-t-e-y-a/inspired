@@ -1,0 +1,54 @@
+---
+import { Image } from "astro:assets";
+import aboutImage from "../assets/about-us.png";
+---
+
+<section
+	class="bg-white py-12 md:py-20 px-2 md:px-20 lg:pl-[calc((100%-1200px)/2+4rem)] xl:pl-[calc((100%-1600px)/2+5rem)] xl:pr-[calc((100%-1600px)/2+5rem)]"
+>
+	<div class="w-full max-w-[1600px] mx-auto group">
+		<h2
+			class="text-[32px] md:text-[40px] font-[300] text-black mb-10 tracking-tight px-4 md:px-0"
+		>
+			About Us
+		</h2>
+
+		<div
+			class="flex flex-col lg:flex-row rounded-[2.5rem] overflow-hidden shadow-xl min-h-[500px]"
+		>
+			<!-- Left: Image Section -->
+			<div class="lg:w-1/2 relative min-h-[350px] lg:min-h-full">
+				<Image
+					src={aboutImage}
+					alt="Doctor with a mother and child"
+					class="absolute inset-0 w-full h-full object-cover"
+				/>
+			</div>
+
+			<!-- Right: Text Section -->
+			<div
+				class="lg:w-1/2 bg-[#1647DF] p-10 md:p-16 flex flex-col justify-center"
+			>
+				<h3
+					class="text-white text-[28px] md:text-[36px] font-[300] leading-tight mb-8"
+				>
+					Your Dedicated Partner for World-Class Healing in India.
+				</h3>
+				<p
+					class="text-white/90 text-[15px] md:text-[16px] leading-[1.8] font-[300] tracking-wide"
+				>
+					MediTailor is a gateway for international patients to gain
+					access to India's crème de la crème in healthcare services.
+					Our mission is simple: high-precision healthcare,
+					accessible, and affordable. We don't just provide healthcare
+					services, we "tailor" your entire healthcare experience.
+					From connecting you with a super-specialist surgeon to your
+					medical visa, recovery stay, and everything in between, we
+					are with you every step of the way. Your healthcare journey
+					is unique, and so is ours – let's take this journey together
+					with care, clarity, and quality
+				</p>
+			</div>
+		</div>
+	</div>
+</section>

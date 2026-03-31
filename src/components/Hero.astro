@@ -1,0 +1,52 @@
+---
+import Button from "./Button.astro";
+import heroImage from "../assets/hero-doctor.png";
+import { Image } from "astro:assets";
+---
+
+<section class="bg-bg-light overflow-hidden flex items-stretch">
+	<div class="grid grid-cols-1 md:grid-cols-2 min-h-[600px] w-full">
+		<div
+			class="flex items-center py-12 md:py-20 px-6 md:px-20 lg:pl-[calc((100%-1200px)/2+4rem)] xl:pl-[calc((100%-1600px)/2+5rem)]"
+		>
+			<div class="md:ml-16 max-w-[540px] text-center md:text-left mx-auto md:mx-0">
+				<h1
+					class="text-[36px] md:text-[52px] font-[400] leading-[1.2] md:leading-[1.15] text-[#000000] mb-5 tracking-[-0.05em] lg:tracking-[-0.08em]"
+				>
+					Your Global Bridge to <span class="block"
+						>Expert Care in India.</span
+					>
+				</h1>
+				<p
+					class="text-[15px] md:text-[17px] text-[#4B5563] mb-10 max-w-[480px] leading-relaxed font-normal opacity-90"
+				>
+					From your first consultation to airport pickup and post-op
+					recovery—we manage your entire medical journey so you can
+					focus on healing.
+				</p>
+
+				<div class="flex flex-col sm:flex-row gap-4">
+					<Button
+						variant="primary"
+						size="lg"
+						class="bg-[#1e40af] px-10 shadow-sm"
+						>Book Free Consultation</Button
+					>
+					<Button
+						variant="outline"
+						size="lg"
+						class="bg-white border-[#1e40af] text-[#1e40af] hover:bg-[#eff6ff] px-10 border-2"
+						>Book Appointment</Button
+					>
+				</div>
+			</div>
+		</div>
+		<div class="relative min-h-[400px] md:min-h-full overflow-hidden">
+			<Image
+				src={heroImage}
+				alt="Medical professional with patient"
+				class="absolute inset-0 w-full h-full object-cover lg:object-center block scale-105"
+			/>
+		</div>
+	</div>
+</section>
