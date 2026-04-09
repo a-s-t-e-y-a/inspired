@@ -3,12 +3,12 @@ import Button from "./Button.astro";
 import SearchBar from "./SearchBar.astro";
 ---
 
-<nav class="bg-black text-white py-5 shadow-md">
-	<div
-		class="container px-4 md:px-20"
-	>
+<nav class="bg-white text-white py-5 shadow-md">
+	<div class="container px-4 md:px-20">
 		<!-- Top Row: Toggle and Logo -->
-		<div class="grid grid-cols-3 lg:flex lg:flex-nowrap justify-between items-center gap-4 lg:gap-8 mb-4 lg:mb-0">
+		<div
+			class="grid grid-cols-3 lg:flex lg:flex-nowrap justify-between items-center gap-4 lg:gap-8 mb-4 lg:mb-0"
+		>
 			<div class="flex items-center justify-start lg:hidden">
 				<button
 					id="menu-toggle"
@@ -48,9 +48,7 @@ import SearchBar from "./SearchBar.astro";
 			<div class="lg:hidden"></div>
 
 			<!-- Search Bar: Centered on desktop, full row below on mobile -->
-			<div
-				class="hidden lg:flex lg:flex-grow lg:justify-center"
-			>
+			<div class="hidden lg:flex lg:flex-grow lg:justify-center">
 				<SearchBar />
 			</div>
 
@@ -61,11 +59,11 @@ import SearchBar from "./SearchBar.astro";
 			>
 				<a
 					href="/"
-					class="text-white hover:text-primary transition-colors py-2 border-b-2 border-transparent hover:border-primary"
+					class="text-black hover:text-primary transition-colors py-2 border-b-2 border-transparent hover:border-primary"
 					>Home</a
 				>
 				<div
-					class="relative group flex items-center gap-1 cursor-pointer py-2 border-b-2 border-transparent hover:text-primary hover:border-primary transition-colors"
+					class="text-black relative group flex items-center gap-1 cursor-pointer py-2 border-b-2 border-transparent hover:text-primary hover:border-primary transition-colors"
 				>
 					<span>Services</span>
 					<svg
@@ -77,17 +75,18 @@ import SearchBar from "./SearchBar.astro";
 						stroke="currentColor"
 						stroke-width="2"
 						stroke-linecap="round"
-						stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg
+						stroke-linejoin="round"
+						><path d="m6 9 6 6 6-6"></path></svg
 					>
 				</div>
 				<a
 					href="/packages"
-					class="text-white hover:text-primary transition-colors py-2 border-b-2 border-transparent hover:border-primary"
+					class="text-black hover:text-primary transition-colors py-2 border-b-2 border-transparent hover:border-primary"
 					>Packages</a
 				>
 				<a
 					href="/about"
-					class="text-white hover:text-primary transition-colors py-2 border-b-2 border-transparent hover:border-primary"
+					class="text-black hover:text-primary transition-colors py-2 border-b-2 border-transparent hover:border-primary"
 					>About Us</a
 				>
 			</div>

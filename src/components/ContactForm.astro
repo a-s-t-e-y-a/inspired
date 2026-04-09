@@ -1,35 +1,49 @@
 ---
-import { Image } from 'astro:assets';
-import contactImage from '../assets/contact-doctor.png';
+import { Image } from "astro:assets";
+import contactImage from "../assets/contact-doctor.png";
 ---
 
-<section class="bg-white py-12 md:py-20 mb-8 md:mb-16 px-0 md:px-20 lg:pl-[calc((100%-1200px)/2+4rem)] xl:pl-[calc((100%-1600px)/2+5rem)] xl:pr-[calc((100%-1600px)/2+5rem)]">
-	<div class="w-full max-w-[1600px] mx-auto overflow-hidden rounded-none md:rounded-[2.5rem] shadow-2xl flex flex-col lg:flex-row min-h-[700px]">
+<section
+	class="bg-white py-12 md:py-20 mb-8 md:mb-16 px-0 md:px-20 lg:pl-[calc((100%-1200px)/2+4rem)] xl:pl-[calc((100%-1600px)/2+5rem)] xl:pr-[calc((100%-1600px)/2+5rem)]"
+>
+	<div
+		class="w-full max-w-[1600px] mx-auto overflow-hidden rounded-none md:rounded-[2.5rem] shadow-2xl flex flex-col lg:flex-row min-h-[700px]"
+	>
 		<div class="lg:w-1/2 relative min-h-[400px] lg:min-h-full">
-			<Image 
-				src={contactImage} 
-				alt="Professional medical doctor with tablet" 
+			<Image
+				src={contactImage}
+				alt="Professional medical doctor with tablet"
 				class="absolute inset-0 w-full h-full object-cover grayscale-[0.2] contrast-[1.1]"
 			/>
 		</div>
-		
-		<div class="lg:w-1/2 bg-[#1647DF] p-8 md:p-12 lg:p-16 flex flex-col">
-			<h2 class="text-white text-[32px] md:text-[40px] font-[300] text-center mb-10 tracking-tight">Book Your Consultation</h2>
-			
+
+		<div class="lg:w-1/2 bg-primary p-8 md:p-12 lg:p-16 flex flex-col">
+			<h2
+				class="text-white text-[32px] md:text-[40px] font-[300] text-center mb-10 tracking-tight"
+			>
+				Book Your Consultation
+			</h2>
+
 			<form class="space-y-6">
 				<div>
-					<label class="block text-white text-sm font-[500] mb-2">Patient Full Name</label>
-					<input 
-						type="text" 
-						placeholder="Enter patient full name" 
+					<label class="block text-white text-sm font-[500] mb-2"
+						>Patient Full Name</label
+					>
+					<input
+						type="text"
+						placeholder="Enter patient full name"
 						class="w-full bg-white border-none rounded-lg px-4 py-3.5 text-black placeholder:text-gray-400 focus:ring-2 focus:ring-white/20 outline-none"
 					/>
 				</div>
-				
+
 				<div>
-					<label class="block text-white text-sm font-[500] mb-2">Select Country</label>
+					<label class="block text-white text-sm font-[500] mb-2"
+						>Select Country</label
+					>
 					<div class="relative">
-						<select class="w-full bg-white border-none rounded-lg px-4 py-3.5 text-gray-500 appearance-none focus:ring-2 focus:ring-white/20 outline-none">
+						<select
+							class="w-full bg-white border-none rounded-lg px-4 py-3.5 text-gray-500 appearance-none focus:ring-2 focus:ring-white/20 outline-none"
+						>
 							<option value="">Select your country</option>
 							<option value="US">United States</option>
 							<option value="GB">United Kingdom</option>
@@ -37,60 +51,113 @@ import contactImage from '../assets/contact-doctor.png';
 							<option value="ET">Ethiopia</option>
 							<option value="BD">Bangladesh</option>
 						</select>
-						<div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-gray-400">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+						<div
+							class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-gray-400"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="16"
+								height="16"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								><path d="m6 9 6 6 6-6"></path></svg
+							>
 						</div>
 					</div>
 				</div>
-				
+
 				<div>
-					<label class="block text-white text-sm font-[500] mb-2">Your email id</label>
-					<input 
-						type="email" 
-						placeholder="Enter your email id" 
+					<label class="block text-white text-sm font-[500] mb-2"
+						>Your email id</label
+					>
+					<input
+						type="email"
+						placeholder="Enter your email id"
 						class="w-full bg-white border-none rounded-lg px-4 py-3.5 text-black placeholder:text-gray-400 focus:ring-2 focus:ring-white/20 outline-none"
 					/>
 				</div>
-				
+
 				<div>
-					<label class="block text-white text-sm font-[500] mb-2">Your Phone number</label>
+					<label class="block text-white text-sm font-[500] mb-2"
+						>Your Phone number</label
+					>
 					<div class="flex gap-3">
-						<div class="w-20 bg-white rounded-lg flex items-center justify-center text-gray-600 font-medium text-sm">+91</div>
-						<input 
-							type="tel" 
-							placeholder="Enter your phone number" 
+						<div
+							class="w-20 bg-white rounded-lg flex items-center justify-center text-gray-600 font-medium text-sm"
+						>
+							+91
+						</div>
+						<input
+							type="tel"
+							placeholder="Enter your phone number"
 							class="flex-1 bg-white border-none rounded-lg px-4 py-3.5 text-black placeholder:text-gray-400 focus:ring-2 focus:ring-white/20 outline-none"
 						/>
 					</div>
 				</div>
-				
+
 				<div>
-					<label class="block text-white text-sm font-[500] mb-2">Describe your medical condition</label>
-					<textarea 
-						placeholder="Describe your medical condition here..." 
+					<label class="block text-white text-sm font-[500] mb-2"
+						>Describe your medical condition</label
+					>
+					<textarea
+						placeholder="Describe your medical condition here..."
 						rows="4"
 						class="w-full bg-white border-none rounded-lg px-4 py-3.5 text-black placeholder:text-gray-400 focus:ring-2 focus:ring-white/20 outline-none resize-none"
 					></textarea>
 				</div>
-				
+
 				<div class="pt-4 flex flex-col gap-4">
 					<div>
-						<label class="block text-white text-sm font-[500] mb-4">Upload Document</label>
-						<button 
-							type="button" 
-							class="w-full bg-[#28a745] hover:bg-[#218838] text-white py-4 rounded-xl font-semibold text-lg shadow-lg active:scale-[0.98] transition-all flex items-center justify-center gap-3 group"
+						<label class="block text-white text-sm font-[500] mb-4"
+							>Upload Document</label
+						>
+						<button
+							type="button"
+							class="w-full bg-accent hover:bg-[#218838] text-white py-4 rounded-xl font-semibold text-lg shadow-lg active:scale-[0.98] transition-all flex items-center justify-center gap-3 group"
 						>
 							<span>Upload Document</span>
-							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:-translate-y-1 transition-transform"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="20"
+								height="20"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								class="group-hover:-translate-y-1 transition-transform"
+								><path
+									d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+								></path><polyline points="17 8 12 3 7 8"
+								></polyline><line x1="12" x2="12" y1="3" y2="15"
+								></line></svg
+							>
 						</button>
 					</div>
-					
-					<button 
-						type="submit" 
-						class="w-full bg-white text-[#1647DF] py-4 rounded-xl font-semibold text-lg shadow-lg active:scale-[0.98] transition-all hover:bg-gray-100 flex items-center justify-center gap-3"
+
+					<button
+						type="submit"
+						class="w-full bg-white text-primary py-4 rounded-xl font-semibold text-lg shadow-lg active:scale-[0.98] transition-all hover:bg-gray-100 flex items-center justify-center gap-3"
 					>
 						<span>Submit Application</span>
-						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="20"
+							height="20"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"
+							></path></svg
+						>
 					</button>
 				</div>
 			</form>

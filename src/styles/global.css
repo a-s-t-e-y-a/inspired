@@ -1,11 +1,15 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #1647DF;
-  --color-accent: #193BB4;
-  --color-bg-light: #DAE9FF;
+  --color-primary: #106EBE;
+  /* blue */
+  --color-accent: #0FFCBE;
+  /* green */
+  --color-bg-light: #EAF2FA;
+  /* light blue */
   --color-text-main: #000000;
-  
+  /* black */
+
   --font-main: 'Poppins', system-ui, -apple-system, sans-serif;
 }
 
@@ -13,7 +17,7 @@
   * {
     @apply m-0 p-0 box-border;
   }
-  
+
   html,
   body {
     font-family: var(--font-main);

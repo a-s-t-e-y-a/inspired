@@ -43,16 +43,16 @@ const faqs = [
 ];
 ---
 
-<section class="bg-[#DAE9FF] py-24 px-4 md:px-20 lg:pl-[calc((100%-1200px)/2+4rem)] xl:pl-[calc((100%-1600px)/2+5rem)] xl:pr-[calc((100%-1600px)/2+5rem)]">
+<section class="bg-bg-light py-24 px-4 md:px-20 lg:pl-[calc((100%-1200px)/2+4rem)] xl:pl-[calc((100%-1600px)/2+5rem)] xl:pr-[calc((100%-1600px)/2+5rem)]">
 	<div class="w-full max-w-[1600px] mx-auto">
 		<h2 class="text-[32px] md:text-[40px] font-[400] text-black mb-12 tracking-tight">Frequently Asked Questions</h2>
 
 		<div class="space-y-4">
 			{faqs.map((faq) => (
-				<details class="group bg-white border border-[#1647DF]/30 rounded-2xl overflow-hidden shadow-sm transition-all hover:border-[#1647DF]/60">
+				<details class="group bg-white border border-primary/30 rounded-2xl overflow-hidden shadow-sm transition-all hover:border-primary/60">
 					<summary class="flex justify-between items-center p-6 md:p-8 cursor-pointer list-none focus:outline-none">
 						<span class="text-black font-[500] text-base md:text-lg pr-8">{faq.question}</span>
-						<div class="flex-shrink-0 w-10 h-10 border-l border-[#1647DF]/20 flex items-center justify-center text-[#1647DF]">
+						<div class="flex-shrink-0 w-10 h-10 border-l border-primary/20 flex items-center justify-center text-primary">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-open:rotate-45 transition-transform duration-300">
 								<line x1="12" y1="5" x2="12" y2="19"></line>
 								<line x1="5" y1="12" x2="19" y2="12"></line>
