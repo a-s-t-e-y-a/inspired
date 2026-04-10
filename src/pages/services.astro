@@ -5,8 +5,8 @@ import Button from "../components/Button.astro";
 ---
 
 <Layout title="Our Services - MediTailor" bodyClass="bg-bg-light">
-	<main class="py-20">
-		<div class="container max-w-[1400px] mx-auto px-4 md:px-0">
+	<main class="py-20 px-4 md:px-0">
+		<div class="container max-w-[1400px] mx-auto">
 			<!-- Page Heading -->
 			<div class="mb-16 md:mb-20">
 				<h1 class="text-[40px] md:text-[52px] font-[400] text-primary mb-6">Our Medical Tourism Services</h1>
@@ -16,7 +16,7 @@ import Button from "../components/Button.astro";
 			</div>
 		</div>
 
-		<div class="max-w-[1400px] mx-auto">
+		<div class="max-w-[1400px] mx-auto px-4 md:px-0">
 
 			<!-- Services Grid -->
 			<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10">
@@ -24,7 +24,7 @@ import Button from "../components/Button.astro";
 					title="Airport Concierge" 
 					description="We provide personalized arrival and departure support to ensure a stress-free transition for every patient."
 				>
-					<svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0FFCBE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4v16"/><path d="m22 20-5-5V4l5 5z"/><path d="M12 2v20"/><path d="M7 2v20"/><path d="M17 2v2"/></svg>
+					<svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0FFCBE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>
 				</ServiceCard>
 
 				<ServiceCard 
@@ -92,7 +92,7 @@ import Button from "../components/Button.astro";
 			</div>
 
 			<!-- Bottom Call to Action -->
-			<div class="mt-32 mb-12 flex justify-center px-4 md:px-0">
+			<div class="mt-32 mb-12 flex justify-center">
 				<Button 
 					href="/#consultation" 
 					size="lg" 
