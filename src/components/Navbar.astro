@@ -3,7 +3,7 @@ import Button from "./Button.astro";
 import SearchBar from "./SearchBar.astro";
 ---
 
-<nav class="bg-white text-white py-5 shadow-md">
+<nav class="bg-white py-5 shadow-md">
 	<div class="container px-4 md:px-20">
 		<!-- Top Row: Toggle and Logo -->
 		<div
@@ -12,7 +12,7 @@ import SearchBar from "./SearchBar.astro";
 			<div class="flex items-center justify-start lg:hidden">
 				<button
 					id="menu-toggle"
-					class="p-2 hover:bg-gray-800 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50"
+					class="p-2 hover:bg-gray-100 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50 text-black"
 					aria-label="Toggle menu"
 				>
 					<svg
@@ -98,31 +98,31 @@ import SearchBar from "./SearchBar.astro";
 		</div>
 	</div>
 
-	<!-- Mobile Menu Dropdown (Simplified Script for Demo) -->
+	<!-- Mobile Menu Dropdown -->
 	<div
 		id="mobile-menu"
-		class="hidden lg:hidden bg-gray-950 px-4 py-6 border-t border-gray-900 mt-3 space-y-4 shadow-xl"
+		class="hidden lg:hidden bg-white px-4 py-6 border-t border-gray-100 mt-3 space-y-4 shadow-xl"
 	>
-		<a href="/" class="block text-lg font-light hover:text-primary">Home</a>
-		<a href="/services" class="block text-lg font-light hover:text-primary"
+		<a
+			href="/"
+			class="block text-lg font-light text-black hover:text-primary transition-colors"
+			>Home</a
+		>
+		<a
+			href="/services"
+			class="block text-lg font-light text-black hover:text-primary transition-colors"
 			>Services</a
 		>
-		<a href="/packages" class="block text-lg font-light hover:text-primary"
+		<a
+			href="/packages"
+			class="block text-lg font-light text-black hover:text-primary transition-colors"
 			>Packages</a
 		>
-		<a href="/about" class="block text-lg font-light hover:text-primary"
+		<a
+			href="/about"
+			class="block text-lg font-light text-black hover:text-primary transition-colors"
 			>About Us</a
 		>
-		<div
-			class="pt-4 flex justify-between items-center border-t border-gray-800"
-		>
-			<span class="text-gray-400 font-light">Account Access</span>
-			<Button
-				variant="primary"
-				size="sm"
-				class="bg-[#1e40af] px-8 font-bold">Login</Button
-			>
-		</div>
 	</div>
 </nav>
 
