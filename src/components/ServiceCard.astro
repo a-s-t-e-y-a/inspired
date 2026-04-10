@@ -1,0 +1,46 @@
+---
+interface Props {
+	title: string;
+	description: string;
+	icon?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<div
+	class="bg-primary p-8 md:p-10 rounded-[2rem] md:rounded-[2.5rem] shadow-xl hover:shadow-2xl transition-all duration-300 flex items-start gap-6 group"
+>
+	<div
+		class="bg-white/10 p-4 rounded-2xl flex-shrink-0 group-hover:scale-110 transition-transform duration-300"
+	>
+		<slot name="icon">
+			<!-- Default Icon if none provided -->
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="32"
+				height="32"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="#0FFCBE"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"
+				></path></svg
+			>
+		</slot>
+	</div>
+	<div class="flex flex-col">
+		<h3
+			class="text-[22px] md:text-[24px] font-[600] text-accent mb-3 tracking-tight"
+		>
+			{title}
+		</h3>
+		<p
+			class="text-[15px] md:text-[16px] text-white/80 leading-relaxed font-[300]"
+		>
+			{description}
+		</p>
+	</div>
+</div>

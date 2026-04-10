@@ -1,0 +1,106 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ServiceCard from "../components/ServiceCard.astro";
+import Button from "../components/Button.astro";
+---
+
+<Layout title="Our Services - MediTailor" bodyClass="bg-bg-light">
+	<main class="py-20">
+		<div class="container max-w-[1400px] mx-auto px-4 md:px-0">
+			<!-- Page Heading -->
+			<div class="mb-16 md:mb-20">
+				<h1 class="text-[40px] md:text-[52px] font-[400] text-primary mb-6">Our Medical Tourism Services</h1>
+				<p class="text-[16px] md:text-[18px] text-gray-600 max-w-[1100px] leading-relaxed font-[300]">
+					At MediTailor, we bridge the gap between world-class clinical expertise and effortless travel by collaborating with a curated network of top-tier healthcare providers. While our partners concentrate on your treatment and recovery, we take full ownership of the journey itself—managing every logistical detail from travel coordination to dedicated concierge support. Whether you are embarking on a life-changing medical procedure or a restorative wellness retreat, we tailor a seamless experience that removes the stress of planning, allowing you to concentrate exclusively on what matters most: your health and peace of mind.
+				</p>
+			</div>
+		</div>
+
+		<div class="max-w-[1400px] mx-auto">
+
+			<!-- Services Grid -->
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10">
+				<ServiceCard 
+					title="Airport Concierge" 
+					description="We provide personalized arrival and departure support to ensure a stress-free transition for every patient."
+				>
+					<svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0FFCBE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4v16"/><path d="m22 20-5-5V4l5 5z"/><path d="M12 2v20"/><path d="M7 2v20"/><path d="M17 2v2"/></svg>
+				</ServiceCard>
+
+				<ServiceCard 
+					title="Visa Facilitation" 
+					description="Our team streamlines your medical visa process by providing official hospital invitation letters to expedite your application."
+				>
+					<svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0FFCBE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/><path d="M12 2v20"/></svg>
+				</ServiceCard>
+
+				<ServiceCard 
+					title="Travel Coordination" 
+					description="We handle the logistics of your medical journey to India, aligning your travel schedule with your clinical needs."
+				>
+					<svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0FFCBE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h11"/><path d="M3 6h18"/><path d="M3 18h18"/><path d="M21 12h-4"/><path d="M15 12l2-2 2 2-2 2-2-2z"/></svg>
+				</ServiceCard>
+
+				<ServiceCard 
+					title="24/7 Personal Coordinator" 
+					description="You will be assigned a dedicated point of contact available around the clock for continuous support and guidance."
+				>
+					<svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0FFCBE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+				</ServiceCard>
+
+				<ServiceCard 
+					title="Priority Scheduling" 
+					description="We eliminate wait times by ensuring all diagnostic investigations and appointments begin immediately upon your arrival."
+				>
+					<svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0FFCBE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="m9 16 2 2 4-4"/></svg>
+				</ServiceCard>
+
+				<ServiceCard 
+					title="Curated Lodging" 
+					description="From budget-friendly guest houses to luxury apartments, we arrange safe and hygienic accommodation tailored to your preferences."
+				>
+					<svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0FFCBE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+				</ServiceCard>
+
+				<ServiceCard 
+					title="Private Transport" 
+					description="Navigate the city with ease via our trusted local transportation network, designed to provide fair pricing and security."
+				>
+					<svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0FFCBE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="10" x="2" y="9" rx="2"/><path d="M7 9V5a3 3 0 0 1 6 0v4"/><circle cx="6" cy="19" r="2"/><circle cx="14" cy="19" r="2"/></svg>
+				</ServiceCard>
+
+				<ServiceCard 
+					title="Financial Management" 
+					description="Simplify your billing with secure bank transfers and managed hospital payments handled by our finance team."
+				>
+					<svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0FFCBE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+				</ServiceCard>
+
+				<ServiceCard 
+					title="Telemedicine Services" 
+					description="Connect with top specialists from anywhere in the world through our secure video consultation platform."
+				>
+					<svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0FFCBE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2" ry="2"/></svg>
+				</ServiceCard>
+
+				<ServiceCard 
+					title="Expert Second Opinions" 
+					description="Gain clarity and confidence in your diagnosis with rapid access to consultations from leading medical experts."
+				>
+					<svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0FFCBE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l2.27-2.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/><path d="M12 7h.01"/><path d="M10 11h2v4"/></svg>
+				</ServiceCard>
+			</div>
+
+			<!-- Bottom Call to Action -->
+			<div class="mt-32 mb-12 flex justify-center px-4 md:px-0">
+				<Button 
+					href="/#consultation" 
+					size="lg" 
+					class="bg-accent text-white px-12 py-6 rounded-2xl text-xl font-bold shadow-2xl hover:bg-primary transition-all active:scale-[0.98] border-none"
+				>
+					Book Free Consultation
+				</Button>
+			</div>
+		</div>
+	</main>
+</Layout>
