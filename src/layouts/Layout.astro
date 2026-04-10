@@ -1,13 +1,17 @@
 ---
-import TopBar from '../components/TopBar.astro';
-import Navbar from '../components/Navbar.astro';
-import '../styles/global.css';
+import TopBar from "../components/TopBar.astro";
+import Navbar from "../components/Navbar.astro";
+import "../styles/global.css";
 
 interface Props {
 	title?: string;
+	bodyClass?: string;
 }
 
-const { title = "Meditailor - Your Global Bridge to Expert Care in India" } = Astro.props;
+const {
+	title = "Meditailor - Your Global Bridge to Expert Care in India",
+	bodyClass = "bg-white",
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -18,11 +22,14 @@ const { title = "Meditailor - Your Global Bridge to Expert Care in India" } = As
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+			rel="stylesheet"
+		/>
 	</head>
-	<body class="m-0 w-full bg-white">
+	<body class={`m-0 w-full ${bodyClass}`}>
 		<header class="sticky top-0 z-50">
 			<TopBar />
 			<Navbar />

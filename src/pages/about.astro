@@ -1,0 +1,56 @@
+---
+import Layout from "../layouts/Layout.astro";
+import AboutHero from "../components/AboutHero.astro";
+import AboutCard from "../components/AboutCard.astro";
+
+// Images
+import visionImg from "../assets/about/vision.png";
+import tailoredImg from "../assets/about/tailored.png";
+import pillarsImg from "../assets/about/pillars.png";
+import indiaMapImg from "../assets/about/india_map.png";
+---
+
+<Layout title="About MediTailor - Precision in Healthcare" bodyClass="bg-accent-light">
+	<div class="container mx-auto pt-32 pb-24 px-4 md:px-0">
+		<div class="max-w-[1400px] mx-auto">
+			<AboutHero 
+				title="About MediTailor: Precision in Care, Personal in Touch." 
+			/>
+
+			<div class="space-y-16">
+			<AboutCard
+				title="Our Vision: A World Without Healthcare Borders."
+				description="At MediTailor, we believe that life-saving medical treatment should never be defined by your location or your budget. Our mission is to serve as a high-precision bridge between international patients and India's most elite, JCI-accredited medical institutions. We simplify the complex, ensuring your journey to recovery is safe, affordable, and seamless."
+				image={visionImg}
+				imageAlt="Global healthcare connectivity symbol"
+			/>
+
+			<AboutCard
+				title="Why 'MediTailor'?"
+				description="The name MediTailor reflects our core philosophy. Healthcare is not one-size-fits-all. Just as a master tailor ensures every stitch is perfect, we 'tailor' every aspect of your medical travel. We don't just book appointments; we curate an entire ecosystem of care—matching your specific diagnosis with the top 1% of surgeons in India who specialize in your exact condition."
+				image={tailoredImg}
+				imageAlt="Precise medical tailoring"
+				reverse={true}
+			/>
+
+			<AboutCard
+				title="Our Three Core Pillars"
+				description={[
+					"<strong>Clinical Excellence:</strong> We only partner with the top 5% of hospitals in India—facilities equipped with robotic surgery, AI diagnostics, and Ivy League-trained surgeons.",
+					"<strong>Radical Transparency:</strong> No hidden costs. No 'foreigner markups.' We provide clear, upfront pricing so you can save up to 70% compared to Western costs with total peace of mind.",
+					"<strong>End-to-End Concierge:</strong> From Medical Visa assistance and airport pickups to local SIM cards and 24/7 bedside advocacy, we handle the logistics so you can focus on healing."
+				]}
+				image={pillarsImg}
+				imageAlt="Professional doctors in a modern hospital"
+			/>
+
+			<AboutCard
+				title="Why Thousands Choose India Through MediTailor."
+				description="India is a global leader in complex surgeries, offering success rates that rival the best hospitals in the US and UK. By choosing MediTailor, you gain immediate access to these world-class outcomes without the agonizing wait times often found in national health systems."
+				image={indiaMapImg}
+				imageAlt="Medical tech map of India"
+				reverse={true}
+			/>
+		</div>
+	</div>
+</Layout>

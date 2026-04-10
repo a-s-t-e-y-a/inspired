@@ -1,0 +1,45 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+	title: string;
+	description: string | string[];
+	image: any;
+	imageAlt: string;
+	reverse?: boolean;
+}
+
+const { title, description, image, imageAlt, reverse = false } = Astro.props;
+---
+
+<div class={`flex flex-col ${reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'} rounded-[2.5rem] overflow-hidden bg-primary min-h-[500px] shadow-xl items-stretch`}>
+	<div class="lg:w-1/2 relative min-h-[350px] lg:min-h-full">
+		<Image
+			src={image}
+			alt={imageAlt}
+			class="absolute inset-0 w-full h-full object-cover"
+		/>
+	</div>
+
+	<div class="lg:w-1/2 p-10 md:p-16 flex flex-col justify-center min-h-full">
+		<h3 class="text-white text-[28px] md:text-[36px] font-[400] leading-tight mb-8">
+			{title}
+		</h3>
+		{
+			Array.isArray(description) ? (
+				<ul class="space-y-4">
+					{description.map((item) => (
+						<li class="text-white/90 text-[15px] md:text-[16px] leading-relaxed font-[300] flex gap-3">
+							<span class="text-accent-light mt-1">•</span>
+							<span set:html={item} />
+						</li>
+					))}
+				</ul>
+			) : (
+				<p class="text-white/90 text-[15px] md:text-[16px] leading-[1.8] font-[300] tracking-wide">
+					{description}
+				</p>
+			)
+		}
+	</div>
+</div>
