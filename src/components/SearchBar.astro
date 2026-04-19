@@ -20,9 +20,91 @@
 			></path></svg
 		>
 	</div>
-	<input
-		type="text"
-		placeholder="Search hospitals, specialities or treatments"
-		class="border-none outline-none w-full text-[13px] text-gray-700 bg-transparent placeholder:text-gray-400 placeholder:font-medium"
-	/>
+	<form id="searchForm" class="w-full">
+		<input
+			id="searchInput"
+			type="text"
+			placeholder="Search hospitals, specialities or treatments"
+			class="border-none outline-none w-full text-[13px] text-gray-700 bg-transparent placeholder:text-gray-400 placeholder:font-medium"
+		/>
+	</form>
 </div>
+
+<script>
+	import { db } from '../utils/supabase';
+	import { validateSearchQuery } from '../utils/validation';
+
+	console.log('🔍 SearchBar script loaded');
+
+	const searchForm = document.getElementById('searchForm') as HTMLFormElement;
+	const searchInput = document.getElementById('searchInput') as HTMLInputElement;
+
+	console.log('✅ SearchBar elements found:', { searchForm: !!searchForm, searchInput: !!searchInput });
+
+	// Debounce function to limit API calls
+	function debounce(func: Function, wait: number) {
+		let timeout: NodeJS.Timeout;
+		return function (...args: any[]) {
+			clearTimeout(timeout);
+			timeout = setTimeout(() => func(...args), wait);
+		};
+	}
+
+	// Handle search submission or input
+	const handleSearch = debounce(async () => {
+		const query = searchInput.value.trim();
+		console.log('🎯 Search handler triggered with query:', query);
+
+		// Validate search query
+		console.log('🔍 Validating search query...');
+		const validation = validateSearchQuery(query);
+		console.log('✅ Search validation result:', { isValid: validation.isValid, errors: validation.errors });
+
+		if (!validation.isValid) {
+			console.log('⚠️ Invalid search query, not logging');
+			return;
+		}
+
+		try {
+			// Log the search query to Supabase
+			console.log('🚀 Calling db.logSearchQuery...');
+			await db.logSearchQuery(query);
+			console.log('✅ Search query logged successfully');
+
+			// Optional: You can add search results logic here
+			// const results = await db.searchHospitals(query);
+			// displaySearchResults(results);
+		} catch (error) {
+			console.error('❌ Error logging search query:', error);
+		}
+	}, 500); // Debounce for 500ms
+
+	if (searchForm) {
+		// Log search on form submission
+		searchForm.addEventListener('submit', (e) => {
+			e.preventDefault();
+			console.log('📤 Search form submitted');
+			handleSearch();
+		});
+
+		// Optional: Log search on Enter key
+		searchInput.addEventListener('keydown', (e) => {
+			if (e.key === 'Enter') {
+				e.preventDefault();
+				console.log('📤 Enter key pressed');
+				handleSearch();
+			}
+		});
+
+		// Optional: Log search as user types (debounced)
+		searchInput.addEventListener('input', () => {
+			console.log('⌨️ User typing:', searchInput.value);
+			handleSearch();
+		});
+
+		console.log('✅ SearchBar event listeners attached');
+	} else {
+		console.error('❌ SearchBar form element not found!');
+	}
+</script>
+
