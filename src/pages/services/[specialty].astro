@@ -1,0 +1,199 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { specialtiesData } from "../../data/specialties";
+import Button from "../../components/Button.astro";
+
+export async function getStaticPaths() {
+	const paths = Object.keys(specialtiesData).map((key) => ({
+		params: { specialty: key },
+	}));
+	return paths;
+}
+
+const { specialty: slug } = Astro.params;
+const specialty = specialtiesData[slug];
+
+if (!specialty) {
+	return Astro.redirect('/404');
+}
+---
+
+<Layout title={`${specialty.name} - MediTailor`} bodyClass="bg-white">
+	<!-- Hero Section -->
+	<section class="relative py-20 md:py-32 overflow-hidden bg-bg-light">
+		<div class="container max-w-[1400px] mx-auto px-6 relative z-10">
+			<div class="max-w-[900px]">
+				<h1 class="text-[42px] md:text-[64px] font-[400] text-primary mb-8 leading-[1.1] tracking-tight">
+					{specialty.heroTitle}
+				</h1>
+				<p class="text-[18px] md:text-[22px] text-gray-600 leading-relaxed font-[300] mb-10">
+					{specialty.heroDescription}
+				</p>
+				<Button href="/#consultation" size="lg" class="bg-accent text-black font-bold px-10 py-5 rounded-2xl shadow-xl hover:bg-primary hover:text-white transition-all">
+					Connect with a Specialist
+				</Button>
+			</div>
+		</div>
+		<!-- Decorative Background Element -->
+		<div class="absolute top-0 right-0 w-1/3 h-full bg-accent/5 -skew-x-12 transform translate-x-1/2"></div>
+	</section>
+
+	<!-- Understanding Specialty -->
+	<section class="py-20 bg-bg-light">
+		<div class="container max-w-[1400px] mx-auto px-6">
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+				<div>
+					<h2 class="text-[32px] md:text-[40px] font-[300] text-black mb-8 tracking-tight">{specialty.understanding.title}</h2>
+					<p class="text-xl text-gray-600 leading-relaxed font-[300]">
+						{specialty.understanding.description}
+					</p>
+				</div>
+			<div class="bg-primary rounded-[2.5rem] p-10 flex flex-col gap-6 min-h-[380px]">
+					<div class="bg-white/10 rounded-2xl p-6 flex items-center gap-5">
+						<div class="text-accent flex-shrink-0">
+							<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+						</div>
+						<div>
+							<p class="text-3xl font-bold text-white">50K+</p>
+							<p class="text-white/60 text-sm font-[300]">Patients Treated Globally</p>
+						</div>
+					</div>
+					<div class="bg-white/10 rounded-2xl p-6 flex items-center gap-5">
+						<div class="text-accent flex-shrink-0">
+							<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+						</div>
+						<div>
+							<p class="text-3xl font-bold text-white">20+</p>
+							<p class="text-white/60 text-sm font-[300]">Years of Excellence</p>
+						</div>
+					</div>
+					<div class="bg-accent/20 rounded-2xl p-6 flex items-center gap-5 border border-accent/30">
+						<div class="text-accent flex-shrink-0">
+							<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+						</div>
+						<div>
+							<p class="text-3xl font-bold text-white">24/7</p>
+							<p class="text-white/60 text-sm font-[300]">Expert Support Available</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Comprehensive Services -->
+	<section class="py-20 bg-white">
+		<div class="container max-w-[1400px] mx-auto px-6">
+			<h2 class="text-[32px] md:text-[40px] font-[300] text-black mb-16 tracking-tight">Our Comprehensive {specialty.name} Services</h2>
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+				{specialty.services.map((service) => (
+					<div class="p-10 rounded-[2rem] bg-bg-light border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+						<div class="w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center text-primary mb-6">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="m5 9 7-7 7 7"/><path d="m19 15-7 7-7-7"/></svg>
+						</div>
+						<h3 class="text-xl font-bold mb-4">{service.title}</h3>
+						<p class="text-gray-500 font-[300] leading-relaxed">
+							{service.description}
+						</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Conditions Treated -->
+	<section class="py-20 bg-primary text-white">
+		<div class="container max-w-[1400px] mx-auto px-6">
+			<h2 class="text-[32px] md:text-[40px] font-[300] mb-16 tracking-tight text-center">Common Conditions We Treat</h2>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
+				{specialty.conditions.map((condition) => (
+					<div class="flex gap-6 items-start">
+						<div class="mt-1 flex-shrink-0 w-8 h-8 rounded-full bg-accent/30 flex items-center justify-center">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+						</div>
+						<div>
+							<h3 class="text-xl font-bold mb-2">{condition.title}</h3>
+							<p class="text-white/70 font-[300] leading-relaxed">
+								{condition.description}
+							</p>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Importance and Diagnostic Tools -->
+	{specialty.importance && (
+		<section class="py-20 bg-white">
+			<div class="container max-w-[1400px] mx-auto px-6">
+				<div class="max-w-[1000px] mx-auto text-center mb-24">
+					<h2 class="text-[32px] md:text-[40px] font-[300] text-black mb-8 tracking-tight">{specialty.importance.title}</h2>
+					<p class="text-2xl text-gray-500 font-[300] leading-relaxed">
+						{specialty.importance.content}
+					</p>
+				</div>
+
+				<div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+					{specialty.importance.riskFactors?.map((factor) => (
+						<div class="bg-bg-light p-12 rounded-[2.5rem]">
+							<h3 class="text-2xl font-bold mb-6">{factor.title}</h3>
+							<p class="text-gray-600 font-[300] leading-relaxed text-lg">
+								{factor.content}
+							</p>
+						</div>
+					))}
+					
+					<div class="bg-accent/10 p-12 rounded-[2.5rem]">
+						{specialty.diagnosticTools.map((tool) => (
+							<>
+								<h3 class="text-2xl font-bold mb-6">{tool.title}</h3>
+								<p class="text-gray-600 font-[300] leading-relaxed text-lg">
+									{tool.description}
+								</p>
+							</>
+						))}
+					</div>
+				</div>
+			</div>
+		</section>
+	)}
+
+	<!-- Why Choose Us -->
+	<section class="py-20 bg-bg-light mb-16">
+		<div class="container max-w-[1400px] mx-auto px-6">
+			<div class="bg-white rounded-[3rem] p-12 md:p-24 shadow-2xl">
+				<h2 class="text-[32px] md:text-[40px] font-[300] text-black mb-16 tracking-tight text-center">Why Choose Our Partner Hospitals?</h2>
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+					{specialty.whyChooseUs.map((reason) => {
+						const colonIdx = reason.indexOf(': ');
+						const title = colonIdx !== -1 ? reason.slice(0, colonIdx) : reason;
+						const desc = colonIdx !== -1 ? reason.slice(colonIdx + 2) : '';
+						return (
+							<div class="flex gap-6">
+								<div class="flex-shrink-0 w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center text-primary">
+									<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>
+								</div>
+								<div>
+									<h3 class="text-xl font-bold mb-2">{title}</h3>
+									<p class="text-gray-500 font-[300] leading-relaxed">{desc}</p>
+								</div>
+							</div>
+						);
+					})}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Call to Action -->
+	<section class="py-32 bg-primary text-center">
+		<div class="container max-w-[800px] mx-auto px-6">
+			<h2 class="text-[36px] md:text-[54px] font-[300] text-white mb-8 leading-tight">Start Your Healing Journey Today</h2>
+			<p class="text-xl text-white/70 mb-12 font-[300]">Book a free consultation with our medical coordinators to find the best {specialty.name.toLowerCase()} care for your needs.</p>
+			<Button href="/#consultation" size="lg" class="bg-accent text-black font-bold px-12 py-6 rounded-2xl text-xl shadow-2xl hover:scale-105 transition-all">
+				Book Free Consultation
+			</Button>
+		</div>
+	</section>
+</Layout>
