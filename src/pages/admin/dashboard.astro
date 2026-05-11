@@ -1,0 +1,360 @@
+---
+import "../../styles/global.css";
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Dashboard – MediTailor Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body class="bg-zinc-950 text-zinc-100 min-h-screen" style="font-family:'Poppins',sans-serif">
+
+  <div class="flex min-h-screen">
+
+    <!-- Sidebar -->
+    <aside class="fixed top-0 left-0 bottom-0 w-56 bg-zinc-900 border-r border-zinc-800 flex flex-col p-4 z-10">
+      <div class="flex items-center gap-3 mb-8 px-2">
+        <div class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0" style="background:linear-gradient(135deg,#106EBE,#0FFCBE)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="text-sm font-bold text-white">MediTailor</div>
+          <div class="text-[10px] text-zinc-500">Admin</div>
+        </div>
+      </div>
+
+      <nav class="flex-1">
+        <a class="flex items-center gap-2.5 px-3 py-2 rounded-md text-sm font-medium bg-zinc-800 text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+          </svg>
+          Enquiries
+        </a>
+      </nav>
+
+      <button id="logoutBtn" class="flex items-center gap-2.5 px-3 py-2 rounded-md text-sm font-medium text-red-400 hover:bg-red-950 transition-colors w-full mt-auto">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+        </svg>
+        Sign Out
+      </button>
+    </aside>
+
+    <!-- Main -->
+    <main class="ml-56 flex-1 p-8">
+
+      <!-- Header -->
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h1 class="text-2xl font-bold text-white">Enquiries</h1>
+          <p class="text-sm text-zinc-500 mt-0.5">All patient enquiries from the website</p>
+        </div>
+        <div id="totalBadge" class="text-xs font-semibold px-3 py-1.5 rounded-full bg-zinc-800 text-zinc-300 border border-zinc-700">
+          Loading…
+        </div>
+      </div>
+
+      <!-- Stat cards -->
+      <div class="grid grid-cols-3 gap-4 mb-6">
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+          <p class="text-xs font-medium text-zinc-500 uppercase tracking-widest mb-1">Total Enquiries</p>
+          <p class="text-3xl font-bold text-blue-400" id="statTotal">—</p>
+        </div>
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+          <p class="text-xs font-medium text-zinc-500 uppercase tracking-widest mb-1">With Documents</p>
+          <p class="text-3xl font-bold text-emerald-400" id="statDocs">—</p>
+        </div>
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+          <p class="text-xs font-medium text-zinc-500 uppercase tracking-widest mb-1">This Month</p>
+          <p class="text-3xl font-bold text-amber-400" id="statMonth">—</p>
+        </div>
+      </div>
+
+      <!-- Table card -->
+      <div class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden">
+
+        <!-- Table toolbar -->
+        <div class="flex items-center justify-between px-6 py-4 border-b border-zinc-800">
+          <p class="text-sm font-semibold text-white">Patient Contacts</p>
+          <div class="relative">
+            <svg class="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500 pointer-events-none" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+            </svg>
+            <input
+              id="searchInput"
+              type="text"
+              placeholder="Search by name, email…"
+              class="pl-9 pr-4 py-2 bg-zinc-800 border border-zinc-700 rounded-md text-sm text-zinc-100 placeholder-zinc-500 outline-none focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500 transition w-56"
+            />
+          </div>
+        </div>
+
+        <!-- Table -->
+        <div id="tableBody" class="min-h-[200px]">
+          <div class="flex flex-col items-center justify-center py-16 text-zinc-600">
+            <div class="w-8 h-8 border-2 border-zinc-700 border-t-emerald-400 rounded-full animate-spin mb-3"></div>
+            <span class="text-sm">Loading enquiries…</span>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <div id="pagination" class="hidden flex items-center justify-between px-6 py-4 border-t border-zinc-800 bg-zinc-900/50">
+          <p class="text-xs text-zinc-500" id="pageInfo"></p>
+          <div class="flex items-center gap-1" id="pageBtns"></div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Detail Modal -->
+  <div id="modalOverlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-200">
+    <div id="modalBox" class="bg-zinc-900 border border-zinc-800 rounded-xl p-7 w-full max-w-lg mx-4 scale-95 transition-transform duration-200">
+      <div class="flex items-center justify-between mb-5">
+        <h2 class="text-base font-semibold text-white">Enquiry Details</h2>
+        <button id="modalClose" class="text-zinc-500 hover:text-white transition text-xl leading-none">×</button>
+      </div>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <style>
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .animate-spin { animation: spin 0.75s linear infinite; }
+  </style>
+
+<script>
+  import { createClient } from '@supabase/supabase-js';
+
+  const supabase = createClient(
+    import.meta.env.PUBLIC_SUPABASE_URL,
+    import.meta.env.PUBLIC_SUPABASE_ANON_KEY
+  );
+
+  if (!localStorage.getItem('admin_session')) { window.location.href = '/admin'; }
+
+  const PAGE_SIZE = 10;
+  let currentPage = 1;
+  let allData: any[] = [];
+  let filtered: any[] = [];
+
+  const tableBody = document.getElementById('tableBody')!;
+  const pagination = document.getElementById('pagination')!;
+  const pageInfo = document.getElementById('pageInfo')!;
+  const pageBtns = document.getElementById('pageBtns')!;
+  const searchInput = document.getElementById('searchInput') as HTMLInputElement;
+  const modalOverlay = document.getElementById('modalOverlay')!;
+  const modalBox = document.getElementById('modalBox')!;
+  const modalContent = document.getElementById('modalContent')!;
+
+  // Logout
+  document.getElementById('logoutBtn')!.addEventListener('click', () => {
+    localStorage.removeItem('admin_session');
+    window.location.href = '/admin';
+  });
+
+  // Modal
+  document.getElementById('modalClose')!.addEventListener('click', closeModal);
+  modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) closeModal(); });
+
+  function openModal() {
+    modalOverlay.classList.remove('opacity-0', 'pointer-events-none');
+    modalBox.classList.remove('scale-95');
+    modalBox.classList.add('scale-100');
+  }
+  function closeModal() {
+    modalOverlay.classList.add('opacity-0', 'pointer-events-none');
+    modalBox.classList.remove('scale-100');
+    modalBox.classList.add('scale-95');
+  }
+
+  function showDetail(contact: any) {
+    const medReq = contact.medical_requests?.[0];
+    const date = new Date(contact.created_at).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' });
+    const countryNames: Record<string, string> = { NG: 'Nigeria', ET: 'Ethiopia', BD: 'Bangladesh', US: 'United States', GB: 'United Kingdom' };
+
+    const row = (label: string, value: string) => `
+      <div class="flex flex-col gap-0.5 mb-4">
+        <span class="text-[10px] font-semibold text-zinc-500 uppercase tracking-widest">${label}</span>
+        <span class="text-sm text-zinc-200">${value}</span>
+      </div>`;
+
+    modalContent.innerHTML = `
+      <div class="grid grid-cols-2 gap-x-6">
+        ${row('Full Name', contact.full_name)}
+        ${row('Email', contact.email)}
+        ${row('Phone', '+91 ' + contact.phone)}
+        ${row('Country', countryNames[contact.country] || contact.country)}
+        ${row('Source', contact.source === 'need_help' ? 'Need Help Form' : 'Contact Form')}
+        ${row('Submitted', date)}
+      </div>
+      ${medReq ? `
+        <div class="border-t border-zinc-800 my-4"></div>
+        <div class="flex flex-col gap-0.5 mb-4">
+          <span class="text-[10px] font-semibold text-zinc-500 uppercase tracking-widest">Medical Condition</span>
+          <span class="text-sm text-zinc-200 leading-relaxed">${medReq.medical_condition || '—'}</span>
+        </div>
+        ${medReq.document_url ? `
+          <a href="${medReq.document_url}" target="_blank"
+            class="inline-flex items-center gap-2 text-xs font-semibold text-emerald-400 border border-emerald-800 bg-emerald-950/40 px-3 py-2 rounded-md hover:bg-emerald-950 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View Document
+          </a>` : ''}
+      ` : ''}
+    `;
+    openModal();
+  }
+
+  function renderTable() {
+    const start = (currentPage - 1) * PAGE_SIZE;
+    const page = filtered.slice(start, start + PAGE_SIZE);
+
+    if (page.length === 0) {
+      tableBody.innerHTML = `<div class="flex flex-col items-center justify-center py-16 text-zinc-600 text-sm">No enquiries found.</div>`;
+      pagination.classList.add('hidden');
+      return;
+    }
+
+    const countryNames: Record<string, string> = { NG: 'Nigeria', ET: 'Ethiopia', BD: 'Bangladesh', US: 'United States', GB: 'United Kingdom' };
+
+    tableBody.innerHTML = `
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-b border-zinc-800">
+            <th class="h-11 px-4 text-left text-xs font-medium text-zinc-500 w-10">#</th>
+            <th class="h-11 px-4 text-left text-xs font-medium text-zinc-500">Patient</th>
+            <th class="h-11 px-4 text-left text-xs font-medium text-zinc-500">Phone</th>
+            <th class="h-11 px-4 text-left text-xs font-medium text-zinc-500">Country</th>
+            <th class="h-11 px-4 text-left text-xs font-medium text-zinc-500">Source</th>
+            <th class="h-11 px-4 text-left text-xs font-medium text-zinc-500">Date</th>
+            <th class="h-11 px-4 text-center text-xs font-medium text-zinc-500">Doc</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${page.map((c: any, i: number) => {
+            const date = new Date(c.created_at).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: '2-digit' });
+            const medReq = c.medical_requests?.[0];
+            const src = c.source === 'need_help';
+            return `
+              <tr data-id="${c.id}" class="border-b border-zinc-800/60 hover:bg-zinc-800/40 transition-colors cursor-pointer">
+                <td class="px-4 py-3.5 text-zinc-600 font-mono text-xs">${start + i + 1}</td>
+                <td class="px-4 py-3.5">
+                  <div class="font-medium text-zinc-100">${c.full_name}</div>
+                  <div class="text-xs text-zinc-500 mt-0.5">${c.email}</div>
+                </td>
+                <td class="px-4 py-3.5 text-zinc-400 text-xs font-mono">+91 ${c.phone}</td>
+                <td class="px-4 py-3.5">
+                  <span class="inline-block text-xs px-2.5 py-1 rounded-md bg-zinc-800 text-zinc-300 border border-zinc-700">${countryNames[c.country] || c.country}</span>
+                </td>
+                <td class="px-4 py-3.5">
+                  <span class="inline-block text-xs px-2.5 py-1 rounded-md font-medium ${src ? 'bg-blue-950 text-blue-400 border border-blue-900' : 'bg-emerald-950 text-emerald-400 border border-emerald-900'}">
+                    ${src ? 'Need Help' : 'Contact'}
+                  </span>
+                </td>
+                <td class="px-4 py-3.5 text-zinc-500 text-xs whitespace-nowrap">${date}</td>
+                <td class="px-4 py-3.5 text-center">
+                  ${medReq?.document_url
+                    ? `<a href="${medReq.document_url}" target="_blank" onclick="event.stopPropagation()"
+                        class="inline-flex items-center gap-1 text-xs text-emerald-400 hover:text-emerald-300 transition font-medium">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        View</a>`
+                    : `<span class="text-zinc-700">—</span>`}
+                </td>
+              </tr>`;
+          }).join('')}
+        </tbody>
+      </table>
+    `;
+
+    tableBody.querySelectorAll('tbody tr').forEach(row => {
+      row.addEventListener('click', () => {
+        const contact = filtered.find((c: any) => c.id === (row as HTMLElement).dataset.id);
+        if (contact) showDetail(contact);
+      });
+    });
+
+    // Pagination
+    const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
+    pagination.classList.remove('hidden');
+    pageInfo.textContent = `Showing ${start + 1}–${Math.min(start + PAGE_SIZE, filtered.length)} of ${filtered.length}`;
+
+    pageBtns.innerHTML = '';
+    const mkBtn = (label: string, disabled: boolean, active: boolean, onClick: () => void) => {
+      const b = document.createElement('button');
+      b.textContent = label;
+      b.disabled = disabled;
+      b.onclick = onClick;
+      b.className = [
+        'px-3 py-1.5 text-xs rounded-md border transition-colors font-medium',
+        active
+          ? 'bg-white text-zinc-900 border-white'
+          : disabled
+          ? 'border-zinc-800 text-zinc-700 cursor-not-allowed bg-transparent'
+          : 'border-zinc-700 text-zinc-400 hover:bg-zinc-800 hover:text-zinc-200 bg-transparent',
+      ].join(' ');
+      pageBtns.appendChild(b);
+    };
+
+    mkBtn('←', currentPage === 1, false, () => { currentPage--; renderTable(); });
+    for (let p = 1; p <= totalPages; p++) {
+      if (p === 1 || p === totalPages || Math.abs(p - currentPage) <= 1) {
+        const cp = p;
+        mkBtn(String(p), false, p === currentPage, () => { currentPage = cp; renderTable(); });
+      } else if (Math.abs(p - currentPage) === 2) {
+        const s = document.createElement('span');
+        s.textContent = '…';
+        s.className = 'px-1 text-xs text-zinc-600';
+        pageBtns.appendChild(s);
+      }
+    }
+    mkBtn('→', currentPage === totalPages, false, () => { currentPage++; renderTable(); });
+  }
+
+  searchInput.addEventListener('input', () => {
+    const q = searchInput.value.toLowerCase().trim();
+    filtered = q ? allData.filter((c: any) =>
+      c.full_name.toLowerCase().includes(q) ||
+      c.email.toLowerCase().includes(q) ||
+      c.phone.includes(q)
+    ) : [...allData];
+    currentPage = 1;
+    renderTable();
+  });
+
+  async function fetchAll() {
+    const { data, error, count } = await supabase
+      .from('contacts')
+      .select('*, medical_requests(*)', { count: 'exact' })
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      tableBody.innerHTML = `<div class="flex items-center justify-center py-16 text-red-400 text-sm">Failed to load: ${error.message}</div>`;
+      return;
+    }
+
+    allData = data || [];
+    filtered = [...allData];
+    const total = count || 0;
+
+    const now = new Date();
+    const monthStart = new Date(now.getFullYear(), now.getMonth(), 1).toISOString();
+    const withDocs = allData.filter((c: any) => c.medical_requests?.[0]?.document_url).length;
+    const thisMonth = allData.filter((c: any) => c.created_at >= monthStart).length;
+
+    (document.getElementById('statTotal') as HTMLElement).textContent = String(total);
+    (document.getElementById('statDocs') as HTMLElement).textContent = String(withDocs);
+    (document.getElementById('statMonth') as HTMLElement).textContent = String(thisMonth);
+    (document.getElementById('totalBadge') as HTMLElement).textContent = `${total} total`;
+
+    renderTable();
+  }
+
+  fetchAll();
+</script>
+</body>
+</html>

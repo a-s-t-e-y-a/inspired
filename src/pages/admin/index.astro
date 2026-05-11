@@ -1,0 +1,140 @@
+---
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Admin Login – MediTailor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0a1628 0%, #106EBE22 50%, #0a1628 100%);
+      background-color: #0a1628;
+    }
+    .card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      padding: 48px 40px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 32px 64px rgba(0,0,0,0.4);
+    }
+    .logo { text-align: center; margin-bottom: 32px; }
+    .logo-icon {
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, #106EBE, #0FFCBE);
+      border-radius: 16px;
+      display: inline-flex; align-items: center; justify-content: center;
+      margin-bottom: 12px;
+    }
+    h1 { color: #fff; font-size: 22px; font-weight: 600; }
+    p.sub { color: rgba(255,255,255,0.5); font-size: 13px; margin-top: 4px; }
+    .field { margin-bottom: 20px; }
+    label { display: block; color: rgba(255,255,255,0.7); font-size: 13px; font-weight: 500; margin-bottom: 8px; }
+    input {
+      width: 100%; background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12); border-radius: 12px;
+      padding: 14px 16px; color: #fff; font-size: 15px; font-family: inherit;
+      outline: none; transition: border-color 0.2s;
+    }
+    input:focus { border-color: #0FFCBE; }
+    input::placeholder { color: rgba(255,255,255,0.25); }
+    button {
+      width: 100%; background: linear-gradient(135deg, #106EBE, #0FFCBE);
+      border: none; border-radius: 12px; padding: 15px;
+      color: #0a1628; font-size: 15px; font-weight: 700; font-family: inherit;
+      cursor: pointer; margin-top: 8px; transition: opacity 0.2s, transform 0.1s;
+    }
+    button:hover { opacity: 0.9; }
+    button:active { transform: scale(0.99); }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    .error {
+      background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.4);
+      color: #fca5a5; border-radius: 10px; padding: 12px 14px;
+      font-size: 13px; margin-bottom: 20px; display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">
+      <div class="logo-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+      </div>
+      <h1>Admin Portal</h1>
+      <p class="sub">MediTailor Enquiry Dashboard</p>
+    </div>
+
+    <div class="error" id="errorBox"></div>
+
+    <form id="loginForm">
+      <div class="field">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="admin@meditailor.com" required />
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="••••••••" required />
+      </div>
+      <button type="submit" id="loginBtn">Sign In</button>
+    </form>
+  </div>
+
+  <script>
+    import { createClient } from '@supabase/supabase-js';
+
+    const supabase = createClient(
+      import.meta.env.PUBLIC_SUPABASE_URL,
+      import.meta.env.PUBLIC_SUPABASE_ANON_KEY
+    );
+
+    // Already logged in?
+    if (localStorage.getItem('admin_session')) {
+      window.location.href = '/admin/dashboard';
+    }
+
+    const form = document.getElementById('loginForm') as HTMLFormElement;
+    const btn = document.getElementById('loginBtn') as HTMLButtonElement;
+    const errorBox = document.getElementById('errorBox') as HTMLElement;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      btn.disabled = true;
+      btn.textContent = 'Signing in...';
+      errorBox.style.display = 'none';
+
+      const email = (document.getElementById('email') as HTMLInputElement).value.trim();
+      const password = (document.getElementById('password') as HTMLInputElement).value;
+
+      const { data, error } = await supabase
+        .from('admins')
+        .select('id, email')
+        .eq('email', email)
+        .eq('password', password)
+        .single();
+
+      if (error || !data) {
+        errorBox.textContent = 'Invalid email or password.';
+        errorBox.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = 'Sign In';
+      } else {
+        localStorage.setItem('admin_session', JSON.stringify({ id: data.id, email: data.email }));
+        window.location.href = '/admin/dashboard';
+      }
+    });
+  </script>
+</body>
+</html>

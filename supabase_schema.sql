@@ -68,3 +68,23 @@ CREATE POLICY "Allow public read"
 ON storage.objects FOR SELECT 
 TO public 
 USING (bucket_id = 'medical_documents');
+
+-- =========================================================================
+-- 4. Admin Users Table (simple login, no Supabase Auth)
+-- =========================================================================
+
+CREATE TABLE IF NOT EXISTS admins (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  email TEXT NOT NULL UNIQUE,
+  password TEXT NOT NULL,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+-- Allow anon to SELECT (needed for login check from frontend)
+ALTER TABLE admins ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Allow anon select on admins" ON admins FOR SELECT TO anon USING (true);
+
+-- Insert the default admin user
+INSERT INTO admins (email, password)
+VALUES ('admin@meditailor.com', 'MediAdmin@2025')
+ON CONFLICT (email) DO NOTHING;
