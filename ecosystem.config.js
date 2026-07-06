@@ -2,10 +2,10 @@ module.exports = {
   apps: [
     {
       name: "inspired-backend",
-      script: "pnpm",
-      args: "run start:prod",
+      script: "./dist/main.js",
       cwd: "./apps/backend",
       instances: 1,
+      exec_mode: "fork",
       autorestart: true,
       watch: false,
       max_memory_restart: "1G",
@@ -15,10 +15,11 @@ module.exports = {
     },
     {
       name: "inspired-admin",
-      script: "pnpm",
-      args: "run start",
+      script: "./node_modules/next/dist/bin/next",
+      args: "start --port 3001",
       cwd: "./apps/admin",
       instances: 1,
+      exec_mode: "fork",
       autorestart: true,
       watch: false,
       max_memory_restart: "1G",
