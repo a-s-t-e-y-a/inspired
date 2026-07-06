@@ -19,6 +19,8 @@ async function bootstrap() {
       'http://localhost:3000', // Backend Swagger UI
       'http://localhost:4321', // Astro frontend default
       'http://localhost:3002', // Astro frontend fallback
+      'https://admin.meditailorhealthcare.com', // Admin panel (prod SSL)
+      'http://admin.meditailorhealthcare.com',  // Admin panel (prod)
     ],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
