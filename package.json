@@ -1,22 +1,26 @@
 {
-  "name": "inspired",
-  "type": "module",
+  "name": "inspired-monorepo",
   "version": "0.0.1",
+  "private": true,
   "engines": {
     "node": ">=22.12.0"
   },
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "preview": "turbo preview",
+    "keep-alive": "node scripts/keep_alive.js"
   },
-  "dependencies": {
+  "devDependencies": {
     "@supabase/supabase-js": "^2.45.0",
-    "@tailwindcss/vite": "^4.2.2",
-    "astro": "^6.1.1",
     "dotenv": "^17.4.2",
-    "sharp": "^0.34.5",
-    "tailwindcss": "^4.2.2"
-  }
+    "turbo": "^2.7.4"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp"
+    ]
+  },
+  "packageManager": "pnpm@10.27.0"
 }
