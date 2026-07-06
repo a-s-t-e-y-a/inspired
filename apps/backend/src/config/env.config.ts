@@ -25,6 +25,9 @@ const envSchema = z.object({
   CLOUDFRONT_DOMAIN: z.string().url().default('https://placeholder.r2.cloudflarestorage.com/meditailor'),
   // Admin signup gate — set to true ONLY when you need to create a new admin (recovery)
   ALLOW_ADMIN_SIGNUP: z.coerce.boolean().default(false),
+  // Cookie Configuration for cross-domain auth
+  COOKIE_DOMAIN: z.string().optional(),
+  COOKIE_SAME_SITE: z.enum(['lax', 'none', 'strict']).default('lax'),
 });
 
 const parsed = envSchema.safeParse(process.env);
