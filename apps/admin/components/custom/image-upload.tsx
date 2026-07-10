@@ -6,7 +6,7 @@ import Dashboard from "@uppy/dashboard";
 import Compressor from "@uppy/compressor";
 import ImageEditor from "@uppy/image-editor";
 import { useFileUpload } from "@/hooks/use-file-upload";
-import { deleteFileFromS3, getFullImageUrl, getImageKey, getPresignedGetUrl } from "@/lib/file-upload";
+import { deleteFileFromS3, getFullImageUrl, getPresignedGetUrl, getImageKey } from "@/lib/file-upload";
 import type { UploadedFile } from "@/types/file-upload";
 
 import "@uppy/core/css/style.min.css";
@@ -110,18 +110,28 @@ export function ImageUpload({
       });
     }
 
-    const doUpload = async (file: Parameters<typeof uploadFile>[0] & { id: string; meta: Record<string, unknown>; data: File }) => {
+    const doUpload = async (file: Parameters<typeof uploadFile>[0] & { id: string; meta: Record<string, unknown>; data: File; name: string }) => {
       if (file.meta.uploaded) return;
       try {
-        const uploadedFile = await uploadFile(file.data, "");
+        // file.data from Uppy Compressor is a Blob — it may not have .name.
+        // Create a proper File so filename is preserved for the presigned URL request.
+        const fileData =
+          file.data instanceof File
+            ? file.data
+            : new File([file.data], file.name || "upload", { type: (file.data as Blob).type || "image/jpeg" });
+
+        const uploadedFile = await uploadFile(fileData, "");
         const imageId = `uploaded-${Date.now()}-${Math.random()}`;
         uppy.setFileMeta(file.id, { uploaded: true });
-        setUploadedImages((prev) => [...prev, { ...uploadedFile, id: imageId }]);
+        // Use public CDN URL as preview so it always loads
+        const publicPreview = uploadedFile.key ? getFullImageUrl(uploadedFile.key) : uploadedFile.preview;
+        setUploadedImages((prev) => [...prev, { ...uploadedFile, preview: publicPreview, id: imageId }]);
         setUppyFileMap((prev) => new Map(prev).set(file.id, imageId));
       } catch {
         uppy.removeFile(file.id);
       }
     };
+
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleFileAdded = async (file: any) => {

@@ -1,6 +1,7 @@
 "use client";
 
 import { useGetDoctors } from "@/queries/doctors.queries";
+import { useGetBlogs } from "@/queries/blogs.queries";
 import { useGetHospitals } from "@/queries/hospitals.queries";
 import { useGetRooms } from "@/queries/rooms.queries";
 import { useGetMedicalConditions } from "@/queries/medical-conditions.queries";
@@ -27,6 +28,7 @@ export default function DashboardPage() {
   const { data: rooms, isLoading: rL } = useGetRooms(1);
   const { data: conditions, isLoading: cL } = useGetMedicalConditions(1);
   const { data: inquiries, isLoading: iL } = useGetInquiries(1);
+  const { data: blogs, isLoading: bL } = useGetBlogs(1);
 
   return (
     <div className="w-full">
@@ -40,6 +42,7 @@ export default function DashboardPage() {
         <StatCard label="Rooms" count={rooms?.total} href="/dashboard/rooms" loading={rL} />
         <StatCard label="Medical Conditions" count={conditions?.total} href="/dashboard/medical-conditions" loading={cL} />
         <StatCard label="Inquiries" count={inquiries?.total} href="/dashboard/inquiries" loading={iL} />
+        <StatCard label="Blog Posts" count={blogs?.total} href="/dashboard/blog" loading={bL} />
       </div>
     </div>
   );

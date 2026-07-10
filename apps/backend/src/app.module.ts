@@ -11,6 +11,7 @@ import { MedicalConditionsModule } from './medical-conditions/medical-conditions
 import { InquiriesModule } from './inquiries/inquiries.module';
 import { UploadModule } from './upload/upload.module';
 import { AdminManagementModule } from './admin-management/admin-management.module';
+import { BlogModule } from './blog/blog.module';
 import { ENV } from './config/env.config';
 
 @Module({
@@ -34,6 +35,7 @@ import { ENV } from './config/env.config';
     InquiriesModule,
     UploadModule,
     AdminManagementModule,
+    BlogModule,
   ],
 })
 export class AppModule { }
